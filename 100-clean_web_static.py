@@ -70,7 +70,7 @@ def do_clean(number=0):
     """function that deletes out dated archives
     Args:
         number (Any): number of archives to be kept
-        """
+    """
         archives = os.listdir('versions/')
         archives.sort(reverse=True)
         start = int(number)

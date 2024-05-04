@@ -33,6 +33,7 @@ def do_pack():
         output = None
     return output
 
+
 def do_deploy(archive_path):
     """Deploys the static files to the host servers.
     Args:
@@ -59,6 +60,7 @@ def do_deploy(archive_path):
         success = False
     return success
 
+
 def deploy():
     """function that archives and deploys static files to
     the host servers.
@@ -66,26 +68,27 @@ def deploy():
     archive_path = do_pack()
     return do_deploy(archive_path) if archive_path else False
 
+
 def do_clean(number=0):
     """function that deletes out dated archives
     Args:
         number (Any): number of archives to be kept
     """
-        archives = os.listdir('versions/')
-        archives.sort(reverse=True)
-        start = int(number)
-        if not start:
-            start += 1
-        if start < len(archives):
-            archives = archives[start:]
-        else:
-            archives = []
-        for archive in archives:
-            os.unlink('versions/{}'.format(archive))
-        cmd_parts = [
-            "rm -rf $(",
-            "find /data/web_static/releases/ -maxdepth 1 -type d -iregex",
-            " '/data/web_static/releases/web_static_.*'",
-            " | sort -r | tr '\\n' ' ' | cut -d ' ' -f{}-)".format(start + 1)
-        ]
-        run(''.join(cmd_parts))
+    archives = os.listdir('versions/')
+    archives.sort(reverse=True)
+    start = int(number)
+    if not start:
+        start += 1
+    if start < len(archives):
+        archives = archives[start:]
+    else:
+        archives = []
+    for archive in archives:
+        os.unlink('versions/{}'.format(archive))
+    cmd_parts = [
+        "rm -rf $(",
+        "find /data/web_static/releases/ -maxdepth 1 -type d -iregex",
+        " '/data/web_static/releases/web_static_.*'",
+        " | sort -r | tr '\\n' ' ' | cut -d ' ' -f{}-)".format(start + 1)
+    ]
+    run(''.join(cmd_parts))

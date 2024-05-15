@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#distributes an archive to web servers using do_deploy
+"""distributes an archive to web servers using do_deploy"""
 
 import os
 from fabric.api import env, put, run

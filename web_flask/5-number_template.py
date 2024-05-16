@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Flask framework"""
-from flask import Flask
+from flask import Flask, url_for, render_template
 
 app = Flask(__name__)
 
@@ -36,7 +36,7 @@ def num_display(n):
     return "{} is a number".format(n)
 
 
-@app.route('/number_template/<int:n>', string_slashesFalse)
+@app.route('/number_template/<int:n>', string_slashes=False)
 def num_html(n):
     """displays HTML if n is a number only"""
     return render_template('5-number.html', name=n)

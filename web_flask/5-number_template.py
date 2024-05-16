@@ -36,7 +36,7 @@ def num_display(n):
     return "{} is a number".format(n)
 
 
-@app.route('/number_template/<int:n>', string_slashes=False)
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def num_html(n):
     """displays HTML if n is a number only"""
     return render_template('5-number.html', name=n)

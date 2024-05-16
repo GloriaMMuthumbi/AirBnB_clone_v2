@@ -24,9 +24,10 @@ class State(BaseModel, Base):
             Getter method to return the list of City
             objects linked to the current State.
             """
-            from models import City
-            city_list = []
-            for city in storage.all(City).values():
+            from models import storage
+            related_cities = []
+            cities = storage.all(City)
+            for city in cities.values():
                 if city.state_id == self.id:
-                    city_list.append(city)
-            return city_list
+                    related_cities.append(city)
+            return related_cities

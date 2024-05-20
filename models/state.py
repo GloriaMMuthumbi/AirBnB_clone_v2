@@ -17,7 +17,6 @@ class State(BaseModel, Base):
     else:
         name = ''
 
-
         @property
         def cities(self):
             """
